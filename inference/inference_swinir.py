@@ -12,8 +12,8 @@ from basicsr.archs.swinir_arch import SwinIR
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input', type=str, default='datasets/Set5/LRbicx4', help='input test image folder')
-    parser.add_argument('--output', type=str, default='results/SwinIR/Set5', help='output folder')
+    parser.add_argument('--input', type=str, default='datasets/B100/LRm234_bicubic/X4', help='input test image folder')
+    parser.add_argument('--output', type=str, default='results/SwinIR_df2k_last_X4/B100', help='output folder')
     parser.add_argument(
         '--task',
         type=str,
@@ -21,7 +21,7 @@ def main():
         help='classical_sr, lightweight_sr, real_sr, gray_dn, color_dn, jpeg_car')
     # dn: denoising; car: compression artifact removal
     # TODO: it now only supports sr, need to adapt to dn and jpeg_car
-    parser.add_argument('--patch_size', type=int, default=64, help='training patch size')
+    parser.add_argument('--patch_size', type=int, default=48, help='training patch size')
     parser.add_argument('--scale', type=int, default=4, help='scale factor: 1, 2, 3, 4, 8')  # 1 for dn and jpeg car
     parser.add_argument('--noise', type=int, default=15, help='noise level: 15, 25, 50')
     parser.add_argument('--jpeg', type=int, default=40, help='scale factor: 10, 20, 30, 40')
@@ -29,7 +29,7 @@ def main():
     parser.add_argument(
         '--model_path',
         type=str,
-        default='experiments/pretrained_models/SwinIR/001_classicalSR_DF2K_s64w8_SwinIR-M_x4.pth')
+        default='experiments/train_SwinIR_SRx4_scratch_P48W8_DIV2K_500k_B4G8/models/net_g_latest.pth')
     args = parser.parse_args()
 
     os.makedirs(args.output, exist_ok=True)

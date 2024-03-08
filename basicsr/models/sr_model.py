@@ -203,6 +203,7 @@ class SRModel(BaseModel):
             img_name = osp.splitext(osp.basename(val_data['lq_path'][0]))[0]
             self.feed_data(val_data)
             self.test()
+#            self.test_selfensemble()
 
             visuals = self.get_current_visuals()
             sr_img = tensor2img([visuals['result']])
